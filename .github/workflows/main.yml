@@ -1,0 +1,44 @@
+name: CI for Multiple Maven Projects
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-first-project:
+    name: Build Maven_First_Project_Demo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build First Project
+        working-directory: Maven_First_Project_Demo
+        run: mvn clean install
+
+  build-second-project:
+    name: Build Second_Demo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Second Project
+        working-directory: Second_Demo
+        run: mvn clean install
