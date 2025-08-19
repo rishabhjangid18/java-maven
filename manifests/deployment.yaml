@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
-  namespace: my-namespace
+  name: hello-world-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: hello-world-app
   template:
     metadata:
       labels:
-        app: myapp
+        app: hello-world-app
     spec:
       containers:
-        - name: myapp
+        - name: hello-world-app
+          # image: <YOUR_DOCKER_USERNAME>/hello-world-app:latest
+          # command: ["java", "-cp", "app.jar", "com.demo.Main"]
           image: imageupdate.azurecr.io/myimage:6
           ports:
             - containerPort: 8080
